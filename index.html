@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive financial tools for savings, budgeting, debt planning, and discounts in Cambodia">
+    <title>Money Express Cambodia | Financial Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Battambang:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Professional Color Palette */
+        :root {
+            --primary-color: #2563EB; /* Vibrant blue - for main actions */
+            --primary-dark: #1D4ED8;
+            --secondary-color: #7C3AED; /* Purple - for secondary actions */
+            --secondary-dark: #6D28D9;
+            --accent-color: #059669; /* Green - for positive actions */
+            --accent-dark: #047857;
+            --text-color: #1F2937; /* Dark gray for body text */
+            --text-light: #6B7280; /* Medium gray */
+            --background-color: #F9FAFB; /* Light gray background */
+            --card-background: #FFFFFF; /* White for cards */
+            --border-color: #E5E7EB; /* Light border */
+            --success-color: #10B981; /* Green for success */
+            --warning-color: #F59E0B; /* Amber for warnings */
+            --error-color: #EF4444; /* Red for errors */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #3B82F6;
+                --primary-dark: #2563EB;
+                --secondary-color: #8B5CF6;
+                --secondary-dark: #7C3AED;
+                --accent-color: #10B981;
+                --accent-dark: #059669;
+                --text-color: #F3F4F6;
+                --text-light: #9CA3AF;
+                --background-color: #111827;
+                --card-background: #1F2937;
+                --border-color: #374151;
+                --success-color: #10B981;
+                --warning-color: #F59E0B;
+                --error-color: #EF4444;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Battambang', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        /* Tool Sections */
+        .tool-section {
+            background-color: var(--card-background);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2.5rem;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .tool-section h2 i {
+            font-size: 1.5rem;
+        }
+
+        .tool-section h3 {
+            color: var(--text-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Modified: Remove outline and box-shadow on focus */
+        .form-control:focus {
+            outline: none; /* Removes the default outline */
+            border-color: var(--primary-color); /* Keeps the border color change if desired */
+            box-shadow: none; /* Removes the box-shadow/glow */
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+            padding-right: 2.5rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            /* Remove transition for color change */
+            transition: none;
+        }
+
+        .btn i {
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        /* Set hover background to be the same as normal background */
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        /* Set hover background to be the same as normal background */
+        .btn-secondary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        /* Set hover background to be the same as normal background */
+        .btn-accent:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Results Styles */
+        .results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            font-size: 1.05rem;
+            display: none;
+        }
+
+        .results p {
+            margin-bottom: 0.75rem;
+        }
+
+        .results strong {
+            font-weight: 600;
+        }
+
+        .results hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 1rem auto;
+            width: 50%;
+        }
+
+        .results.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+
+        .results.warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            color: var(--warning-color);
+        }
+
+        .results.error {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: var(--error-color);
+        }
+
+        .note {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Debt Item Styles */
+        .debt-item {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            background-color: var(--background-color);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grid Layout for Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .tool-section {
+                padding: 1.5rem;
+            }
+
+            .tool-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .debt-item {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .tool-section {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            .tool-section.print-active,
+            .tool-section.print-active * {
+                visibility: visible;
+            }
+
+            .tool-section.print-active {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0 !important;
+                box-shadow: none !important;
+                padding: 1rem !important;
+                border-radius: 0 !important;
+                page-break-after: always;
+                border: none !important;
+            }
+
+            .btn {
+                display: none !important;
+            }
+
+            .form-group {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+            }
+
+            .form-group label {
+                font-weight: 600 !important;
+            }
+
+            .form-control {
+                border: none !important;
+                background: transparent !important;
+                padding: 0 !important;
+                text-align: right;
+            }
+
+            .results {
+                background: transparent !important;
+                border: 1px solid #ccc !important;
+                color: black !important;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="savings-calculator" class="tool-section">
+            <h2><i class="fas fa-piggy-bank"></i> Savings Calculator</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="currentSavings">Current Savings ($)</label>
+                    <input type="number" id="currentSavings" class="form-control" value="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="monthlyContribution">Monthly Contribution ($)</label>
+                    <input type="number" id="monthlyContribution" class="form-control" value="100" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="annualInterestRate">Annual Interest Rate (%)</label>
+                    <input type="number" id="annualInterestRate" class="form-control" value="5" min="0" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="yearsToSave">Years to Save</label>
+                    <input type="number" id="yearsToSave" class="form-control" value="10" min="1">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="calculateSavings()">
+                <i class="fas fa-calculator"></i> Calculate Savings
+            </button>
+            <div id="savingsResults" class="results"></div>
+        </section>
+
+        <section id="budget-tracker" class="tool-section">
+            <h2><i class="fas fa-wallet"></i> Budget Tracker</h2>
+
+            <h3><i class="fas fa-money-bill-alt"></i> Income</h3>
+            <div class="form-group">
+                <label for="monthlyIncome">Total Monthly Income ($)</label>
+                <input type="number" id="monthlyIncome" class="form-control" value="3000" min="0">
+            </div>
+
+            <h3><i class="fas fa-receipt"></i> Expenses</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="housingCost">Housing ($)</label>
+                    <input type="number" id="housingCost" class="form-control" value="1000" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="foodCost">Food ($)</label>
+                    <input type="number" id="foodCost" class="form-control" value="400" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="transportationCost">Transportation ($)</label>
+                    <input type="number" id="transportationCost" class="form-control" value="200" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="utilitiesCost">Utilities ($)</label>
+                    <input type="number" id="utilitiesCost" class="form-control" value="150" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="entertainmentCost">Entertainment ($)</label>
+                    <input type="number" id="entertainmentCost" class="form-control" value="100" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="otherExpenses">Other Expenses ($)</label>
+                    <input type="number" id="otherExpenses" class="form-control" value="150" min="0">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="trackBudget()">
+                <i class="fas fa-chart-pie"></i> Track Budget
+            </button>
+            <div id="budgetResults" class="results"></div>
+        </section>
+
+        <section id="discount-calculator" class="tool-section">
+            <h2><i class="fas fa-tag"></i> Discount Calculator</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="originalPrice">Original Price ($)</label>
+                    <input type="number" id="originalPrice" class="form-control" value="100" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="discountPercentage">Discount Percentage (%)</label>
+                    <input type="number" id="discountPercentage" class="form-control" value="10" min="0" max="100" step="0.1">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="calculateDiscount()">
+                <i class="fas fa-percentage"></i> Calculate Discount
+            </button>
+            <div id="discountResults" class="results"></div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        Powered by Money Express Cambodia
+    </footer>
+
+    <script>
+        // --- Savings Calculator Logic ---
+        function calculateSavings() {
+            const currentSavings = parseFloat(document.getElementById('currentSavings').value);
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value);
+            const annualInterestRate = parseFloat(document.getElementById('annualInterestRate').value);
+            const yearsToSave = parseFloat(document.getElementById('yearsToSave').value);
+
+            // Basic calculation example (compounded monthly)
+            const months = yearsToSave * 12;
+            const monthlyInterestRate = annualInterestRate / 100 / 12; // Convert annual percentage to monthly decimal
+
+            let futureValue = currentSavings;
+            for (let i = 0; i < months; i++) {
+                futureValue = (futureValue + monthlyContribution) * (1 + monthlyInterestRate);
+            }
+
+            const totalContributions = currentSavings + (monthlyContribution * months);
+            const interestEarned = futureValue - totalContributions;
+
+            const savingsResultsDiv = document.getElementById('savingsResults');
+            savingsResultsDiv.innerHTML = `
+                <p>After <strong>${yearsToSave} years</strong>, you will have:</p>
+                <p><strong>$${futureValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <hr>
+                <p>Total Contributions: <strong>$${totalContributions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <p>Interest Earned: <strong>$${interestEarned.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <p class="note">This is a simplified calculation and does not account for taxes or fees.</p>
+            `;
+            savingsResultsDiv.className = 'results success';
+            savingsResultsDiv.style.display = 'block';
+        }
+
+        // --- Budget Tracker Logic ---
+        function trackBudget() {
+            const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value);
+            const housingCost = parseFloat(document.getElementById('housingCost').value);
+            const foodCost = parseFloat(document.getElementById('foodCost').value);
+            const transportationCost = parseFloat(document.getElementById('transportationCost').value);
+            const utilitiesCost = parseFloat(document.getElementById('utilitiesCost').value);
+            const entertainmentCost = parseFloat(document.getElementById('entertainmentCost').value);
+            const otherExpenses = parseFloat(document.getElementById('otherExpenses').value);
+
+            const totalExpenses = housingCost + foodCost + transportationCost + utilitiesCost + entertainmentCost + otherExpenses;
+            const remainingBalance = monthlyIncome - totalExpenses;
+            const savingsRate = (monthlyIncome > 0) ? (remainingBalance / monthlyIncome) * 100 : 0; // Prevent division by zero
+
+            const budgetResultsDiv = document.getElementById('budgetResults');
+            let resultHtml = `
+                <p>Total Monthly Income: <strong>$${monthlyIncome.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <p>Total Monthly Expenses: <strong>$${totalExpenses.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <hr>
+                <p>Remaining Balance: <strong>$${remainingBalance.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <p>Savings Rate: <strong>${savingsRate.toFixed(1)}%</strong></p>
+            `;
+
+            if (remainingBalance < 0) {
+                resultHtml += `<p class="note">You are overspending by $${Math.abs(remainingBalance).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} each month. Consider reducing expenses.</p>`;
+                budgetResultsDiv.className = 'results error';
+            } else if (remainingBalance === 0) {
+                resultHtml += `<p class="note">Your expenses equal your income. Consider saving more!</p>`;
+                budgetResultsDiv.className = 'results warning';
+            } else {
+                resultHtml += `<p class="note">Great job! You have money left to save or invest.</p>`;
+                budgetResultsDiv.className = 'results success';
+            }
+
+            budgetResultsDiv.innerHTML = resultHtml;
+            budgetResultsDiv.style.display = 'block';
+        }
+
+        // --- Discount Calculator Logic ---
+        function calculateDiscount() {
+            const originalPrice = parseFloat(document.getElementById('originalPrice').value);
+            const discountPercentage = parseFloat(document.getElementById('discountPercentage').value);
+
+            const discountResultsDiv = document.getElementById('discountResults');
+            let resultsClass = 'results';
+
+            if (isNaN(originalPrice) || originalPrice < 0) {
+                discountResultsDiv.innerHTML = `<p>Please enter a valid original price (non-negative number).</p>`;
+                resultsClass += ' error';
+            } else if (isNaN(discountPercentage) || discountPercentage < 0 || discountPercentage > 100) {
+                discountResultsDiv.innerHTML = `<p>Please enter a valid discount percentage (between 0% and 100%).</p>`;
+                resultsClass += ' error';
+            } else {
+                const discountAmount = originalPrice * (discountPercentage / 100);
+                const finalPrice = originalPrice - discountAmount;
+
+                discountResultsDiv.innerHTML = `
+                    <p>Original Price: <strong>$${originalPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                    <p>Discount Percentage: <strong>${discountPercentage.toFixed(2)}%</strong></p>
+                    <hr>
+                    <p>Discount Amount: <strong>$${discountAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                    <p>Final Price: <strong>$${finalPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                    <p class="note">You save $${discountAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${discountPercentage.toFixed(2)}%)</p>
+                `;
+                resultsClass += ' success';
+            }
+            discountResultsDiv.className = resultsClass;
+            discountResultsDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
